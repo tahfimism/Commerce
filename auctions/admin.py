@@ -1,3 +1,6 @@
+"""
+Admin site configuration for the auctions app.
+"""
 from django.contrib import admin
 from .models import User, Item, Bid, Category
 
