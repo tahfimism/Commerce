@@ -8,10 +8,31 @@ from .models import User
 
 
 def index(request):
+    """
+    Renders the index page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered index page.
+    """
     return render(request, "auctions/index.html")
 
 
 def login_view(request):
+    """
+    Handles user login.
+
+    If the request method is POST, it attempts to authenticate the user.
+    Otherwise, it renders the login form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered login page or a redirect to index.
+    """
     if request.method == "POST":
 
         # Attempt to sign user in
@@ -32,11 +53,32 @@ def login_view(request):
 
 
 def logout_view(request):
+    """
+    Handles user logout.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: A redirect to the index page.
+    """
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 
 def register(request):
+    """
+    Handles user registration.
+
+    If the request method is POST, it attempts to create a new user.
+    Otherwise, it renders the registration form.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The rendered registration page or a redirect to index.
+    """
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]

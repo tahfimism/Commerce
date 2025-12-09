@@ -1,3 +1,6 @@
+"""
+URL configuration for the auctions app.
+"""
 from django.urls import path
 
 from . import views

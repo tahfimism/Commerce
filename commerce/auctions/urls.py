@@ -1,3 +1,6 @@
+"""
+URL configuration for the nested auctions app (commerce/auctions).
+"""
 from django.urls import path
 
 from . import views
