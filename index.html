@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commerce Auction Site Documentation</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --text-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --secondary-text: #94a3b8;
+            --border-color: #334155;
+            --code-bg: #0f172a;
+            --card-bg: #1e293b;
+            --hover-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem;
+            position: fixed;
+            height: 100%;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+
+        aside h1 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        aside nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside nav ul li {
+            margin-bottom: 1rem;
+        }
+
+        aside nav a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        aside nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 250px;
+            padding: 4rem;
+            max-width: 900px;
+            flex: 1;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+        }
+
+        ul {
+            color: var(--secondary-text);
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards for Features/Models */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.25rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        code {
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            color: #a5b4fc;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #334155;
+            color: #f8fafc;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--secondary-text);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 1rem;
+                box-sizing: border-box;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <h1>Commerce</h1>
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#architecture">Architecture & Models</a></li>
+                <li><a href="#structure">Project Structure</a></li>
+                <li><a href="#installation">Getting Started</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>
+                <strong>Commerce</strong> is a robust, Django-based auction platform designed to facilitate a seamless online bidding experience.
+                It empowers users to list items for auction, place real-time bids, engage with the community through comments, and track their favorite items via a watchlist.
+            </p>
+            <p>
+                Built with scalability and user experience in mind, this project demonstrates a clean separation of concerns using the Django MVT (Model-View-Template) architecture.
+            </p>
+        </section>
+
+        <section id="features">
+            <h2>Key Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Listing Management</h3>
+                    <p>Users can create rich auction listings complete with titles, descriptions, starting bids, categories, and image URLs. Owners have the ability to close auctions at any time.</p>
+                </div>
+                <div class="card">
+                    <h3>Bidding System</h3>
+                    <p>Dynamic bidding engine allowing users to place competitive bids. The system validates bids to ensure they exceed the current highest offer.</p>
+                </div>
+                <div class="card">
+                    <h3>Watchlist</h3>
+                    <p>Personalized watchlist feature enabling users to track specific auctions they are interested in without placing an immediate bid.</p>
+                </div>
+                <div class="card">
+                    <h3>Categorization</h3>
+                    <p>Robust filtering system allowing users to browse items by specific categories (e.g., Electronics, Fashion, Toys).</p>
+                </div>
+                <div class="card">
+                    <h3>Comments & Interaction</h3>
+                    <p>Social features allowing authenticated users to discuss listings, ask questions, or provide feedback directly on the item page.</p>
+                </div>
+                <div class="card">
+                    <h3>Admin Dashboard</h3>
+                    <p>Full-featured Django Admin interface for site administrators to manage users, listings, bids, and comments efficiently.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture">
+            <h2>Architecture & Data Models</h2>
+            <p>The application relies on a relational database schema optimized for data integrity and efficient querying. Below are the core models defining the system.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>User</h3>
+                    <p>Extends <code>AbstractUser</code>.</p>
+                    <ul>
+                        <li><strong>watchlist</strong>: M:N relationship with <code>Item</code>. Tracks watched items.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Item</h3>
+                    <p>The core entity representing an auction listing.</p>
+                    <ul>
+                        <li><strong>title</strong>: CharField (64 chars).</li>
+                        <li><strong>description</strong>: TextField.</li>
+                        <li><strong>starting_bid</strong>: DecimalField.</li>
+                        <li><strong>isopen</strong>: Boolean. Auction status.</li>
+                        <li><strong>category</strong>: ForeignKey to <code>Category</code>.</li>
+                        <li><strong>owner</strong>: ForeignKey to <code>User</code>.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Bid</h3>
+                    <p>Records a monetary offer on an item.</p>
+                    <ul>
+                        <li><strong>amount</strong>: DecimalField.</li>
+                        <li><strong>item</strong>: ForeignKey to <code>Item</code>.</li>
+                        <li><strong>bidder</strong>: ForeignKey to <code>User</code>.</li>
+                        <li><strong>timestamp</strong>: DateTimeField (auto-add).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Comment</h3>
+                    <p>User interactions on listings.</p>
+                    <ul>
+                        <li><strong>text</strong>: Content of the comment.</li>
+                        <li><strong>item</strong>: ForeignKey to <code>Item</code>.</li>
+                        <li><strong>by</strong>: ForeignKey to <code>User</code>.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Category</h3>
+                    <p>Classification for items.</p>
+                    <ul>
+                        <li><strong>name</strong>: CharField. Category name.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="structure">
+            <h2>Project Structure</h2>
+            <p>The repository follows a standard Django project layout, ensuring maintainability and scalability.</p>
+            <pre>
+/
+├── auctions/           # Main Application Logic
+│   ├── models.py       # Database Schema Definitions
+│   ├── views.py        # Request Handling & Logic
+│   ├── urls.py         # App-specific URL Routing
+│   ├── templates/      # HTML Templates
+│   └── admin.py        # Admin Site Configuration
+├── commerce/           # Project Configuration
+│   ├── settings.py     # Global Settings
+│   └── urls.py         # Root URL Routing
+├── manage.py           # CLI Utility
+└── db.sqlite3          # SQLite Database (Dev)
+            </pre>
+        </section>
+
+        <section id="installation">
+            <h2>Getting Started</h2>
+            <p>Follow these steps to set up the development environment locally.</p>
+
+            <h3>Prerequisites</h3>
+            <p><span class="badge">Python 3.x</span> <span class="badge">Django</span></p>
+
+            <h3>Installation</h3>
+            <ol>
+                <li>
+                    <p>Clone the repository:</p>
+                    <pre><code>git clone &lt;repository-url&gt;
+cd commerce</code></pre>
+                </li>
+                <li>
+                    <p>Install dependencies:</p>
+                    <pre><code>pip install -r requirements.txt</code></pre>
+                </li>
+                <li>
+                    <p>Apply database migrations:</p>
+                    <pre><code>python manage.py makemigrations
+python manage.py migrate</code></pre>
+                </li>
+                <li>
+                    <p>Run the development server:</p>
+                    <pre><code>python manage.py runserver</code></pre>
+                </li>
+            </ol>
+            <p>Access the application at <code>http://127.0.0.1:8000/</code>.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 Commerce Auction Site. Documentation generated for technical review.</p>
+        </footer>
+    </main>
+</body>
+</html>
